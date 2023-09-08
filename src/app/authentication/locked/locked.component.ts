@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthService } from 'src/app/core/service/auth.service';
-import { Role } from 'src/app/core/models/role';
+import {AuthService} from 'src/app/core/service/auth.service';
+
 @Component({
   selector: 'app-locked',
   templateUrl: './locked.component.html',
@@ -15,43 +15,52 @@ import { Role } from 'src/app/core/models/role';
 export class LockedComponent implements OnInit {
   authForm!: UntypedFormGroup;
   submitted = false;
-  userImg!: string;
-  userFullName!: string;
+
+
   hide = true;
+  resetToken: string;
+  error = '';
+
   constructor(
     private formBuilder: UntypedFormBuilder,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private authService: AuthService
-  ) {}
+  ) {
+    this.resetToken = this.activatedRoute.snapshot.paramMap.get('token') || '';
+  }
+
   ngOnInit() {
     this.authForm = this.formBuilder.group({
       password: ['', Validators.required],
     });
-    this.userImg = this.authService.currentUserValue.img;
-    this.userFullName =
-      this.authService.currentUserValue.prenom +
-      ' ' +
-      this.authService.currentUserValue.nom;
   }
+
   get f() {
     return this.authForm.controls;
   }
+
   onSubmit() {
+    this.error = '';
     this.submitted = true;
     // stop here if form is invalid
     if (this.authForm.invalid) {
       return;
     } else {
-      const role = this.authService.currentUserValue.role;
-      if (role === Role.Admin) {
-        this.router.navigate(['/admin/dashboard/main']);
-      } else if (role === Role.Doctor) {
-        this.router.navigate(['/doctor/dashboard']);
-      } else if (role === Role.Patient) {
-        this.router.navigate(['/patient/dashboard']);
-      } else {
-        this.router.navigate(['/authentication/signin']);
-      }
+      this.authService.resetPassword(this.resetToken, this.authForm.value.password)
+        .subscribe({
+          next: () => {
+            this.router.navigate(['/authentication/signin']);
+          }, error: (error) => {
+            console.log(error.status);
+            if (error.status === 400) {
+              this.error = 'Invalid token';
+            }else {
+              this.error = 'Error occured please try again later'
+            }
+            return;
+          }
+        })
     }
   }
 }
