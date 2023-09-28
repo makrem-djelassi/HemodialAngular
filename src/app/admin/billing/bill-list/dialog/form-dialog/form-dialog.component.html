@@ -17,21 +17,21 @@
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Patient Name</mat-label>
-            <input matInput formControlName="pName" required>
+            <mat-label>Patient</mat-label>
+            <input matInput formControlName="name" required>
             <mat-icon matSuffix>face</mat-icon>
-            <mat-error *ngIf="billListForm.get('pName')?.hasError('required')">
-              Patient Name is required
+            <mat-error *ngIf="billListForm.get('name')?.hasError('required')">
+              Patient
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Admission ID</mat-label>
-            <input matInput formControlName="admissionID" required>
+            <mat-label>N° Facture</mat-label>
+            <input matInput formControlName="id" required>
             <mat-icon matSuffix>tag</mat-icon>
-            <mat-error *ngIf="billListForm.get('admissionID')?.hasError('required')">
-              Admission ID is required
+            <mat-error *ngIf="billListForm.get('id')?.hasError('required')">
+              N° Facture
             </mat-error>
           </mat-form-field>
         </div>
@@ -39,32 +39,11 @@
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Doctor Name</mat-label>
-            <input matInput formControlName="dName" required>
-            <mat-icon matSuffix>perm_identity</mat-icon>
-            <mat-error *ngIf="billListForm.get('dName')?.hasError('required')">
-              Doctor Name is required
-            </mat-error>
+            <mat-label>Total</mat-label>
+            <input matInput formControlName="total">
+            <mat-icon matSuffix>receipt</mat-icon>
           </mat-form-field>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width " appearance="outline">
-            <mat-label>Status</mat-label>
-            <mat-select formControlName="status" required>
-              <mat-option [value]="'Paid'">
-                Paid
-              </mat-option>
-              <mat-option [value]="'Unpaid'">
-                Unpaid
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="billListForm.get('status')?.hasError('required')">
-              Status is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Date</mat-label>
@@ -76,34 +55,215 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Tax</mat-label>
-            <input matInput formControlName="tax">
-            <mat-icon matSuffix>description</mat-icon>
-            <mat-error *ngIf="billListForm.get('tax')?.hasError('required')">
-              Tax is required
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date1</mat-label>
+            <input matInput formControlName="date1" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date1')?.hasError('date1') && billListForm.get('date1')?.touched">
+              date1
             </mat-error>
           </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s1">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date8</mat-label>
+            <input matInput formControlName="date1" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date8')?.hasError('date8') && billListForm.get('date8')?.touched">
+              date8
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s8">
+          </mat-checkbox>
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Discount</mat-label>
-            <input matInput formControlName="discount">
-            <mat-icon matSuffix>local_activity</mat-icon>
-            <mat-error *ngIf="billListForm.get('discount')?.hasError('required')">
-              Discount is required
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date2</mat-label>
+            <input matInput formControlName="date2" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date2')?.hasError('date2') && billListForm.get('date2')?.touched">
+              date2
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Total</mat-label>
-            <input matInput formControlName="total">
-            <mat-icon matSuffix>receipt</mat-icon>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s2">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date9</mat-label>
+            <input matInput formControlName="date9" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date9')?.hasError('date9') && billListForm.get('date9')?.touched">
+              date9
+            </mat-error>
           </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s9">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date3</mat-label>
+            <input matInput formControlName="date3" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date3')?.hasError('date3') && billListForm.get('date3')?.touched">
+              date3
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s3">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date10</mat-label>
+            <input matInput formControlName="date10" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date10')?.hasError('date10') && billListForm.get('date10')?.touched">
+              date10
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s10">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date4</mat-label>
+            <input matInput formControlName="date4" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date4')?.hasError('date4') && billListForm.get('date4')?.touched">
+              date4
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s4">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date11</mat-label>
+            <input matInput formControlName="date11" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date11')?.hasError('date11') && billListForm.get('date11')?.touched">
+              date11
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s11">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date5</mat-label>
+            <input matInput formControlName="date5" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date15')?.hasError('date5') && billListForm.get('date5')?.touched">
+              date5
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s5">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date12</mat-label>
+            <input matInput formControlName="date12" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date12')?.hasError('date12') && billListForm.get('date12')?.touched">
+              date12
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s12">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date6</mat-label>
+            <input matInput formControlName="date6" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date6')?.hasError('date6') && billListForm.get('date6')?.touched">
+              date6
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s6">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date13</mat-label>
+            <input matInput formControlName="date13" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date13')?.hasError('date13') && billListForm.get('date13')?.touched">
+              date13
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s13">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date17</mat-label>
+            <input matInput formControlName="date7" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date7')?.hasError('date7') && billListForm.get('date7')?.touched">
+              date7
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s7">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date14</mat-label>
+            <input matInput formControlName="date14" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="billListForm.get('date14')?.hasError('date14') && billListForm.get('date14')?.touched">
+              date14
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s14">
+          </mat-checkbox>
         </div>
       </div>
       <div class="row">

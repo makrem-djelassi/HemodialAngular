@@ -17,21 +17,20 @@ export class BookappointmentComponent {
   constructor(private fb: UntypedFormBuilder) {
     this.bookingForm = this.fb.group({
       first: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      last: [''],
-      gender: ['', [Validators.required]],
-      mobile: ['', [Validators.required]],
-      address: [''],
-      email: [
-        '',
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-      dob: ['', [Validators.required]],
-      doctor: ['', [Validators.required]],
-      doa: ['', [Validators.required]],
-      timeSlot: ['', [Validators.required]],
-      injury: [''],
-      note: [''],
-      uploadFile: [''],
+      date1: ['', [Validators.required]],
+      date2: ['', [Validators.required]],
+      date3: ['', [Validators.required]],
+      date4: ['', [Validators.required]],
+      date5: ['', [Validators.required]],
+      date6: ['', [Validators.required]],
+      date7: ['', [Validators.required]],
+      date8: ['', [Validators.required]],
+      date9: ['', [Validators.required]],
+      date10: ['', [Validators.required]],
+      date11: ['', [Validators.required]],
+      date12: ['', [Validators.required]],
+      date13: ['', [Validators.required]],
+      date14: ['', [Validators.required]],
     });
   }
   onSubmit() {

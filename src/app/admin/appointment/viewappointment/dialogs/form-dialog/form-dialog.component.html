@@ -8,123 +8,243 @@
         </div>
       </div>
     </div>
-    <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+    <button (click)="dialogRef.close()" aria-label="Close dialog" class="modal-close-button" mat-icon-button>
       <mat-icon>close</mat-icon>
     </button>
   </div>
   <div mat-dialog-content>
-    <form class="register-form m-4" [formGroup]="appointmentForm" (ngSubmit)="submit">
+    <form (ngSubmit)="submit" [formGroup]="appointmentForm" class="register-form m-4">
+      <!--
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>name</mat-label>
-            <input matInput formControlName="name">
-            <mat-icon matSuffix>face</mat-icon>
+            <input formControlName="name" matInput>
+            <mat-icon matSuffix>date_range</mat-icon>
             <mat-error *ngIf="appointmentForm.get('name')?.hasError('required')">
               Name is required
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" required>
-            <mat-icon matSuffix>email</mat-icon>
-            <mat-error
-              *ngIf="appointmentForm.get('email')?.hasError('required') || appointmentForm.get('email')?.touched">
-              Please enter a valid email address
+      </div>
+      -->
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date1</mat-label>
+            <input matInput formControlName="date1" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date1')?.hasError('date1') && appointmentForm.get('date1')?.touched">
+              date1
             </mat-error>
           </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s1">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date8</mat-label>
+            <input matInput formControlName="date1" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date8')?.hasError('date8') && appointmentForm.get('date8')?.touched">
+              date8
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s8">
+          </mat-checkbox>
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-          <div class="m-b-20">
-            <mat-label class="msr-3">Gender:</mat-label>
-            <mat-radio-group aria-label="Select gender" formControlName="gender" required>
-              <mat-radio-button value="male">Male</mat-radio-button>
-              <mat-radio-button value="female">Female</mat-radio-button>
-              <mat-error *ngIf="appointmentForm.get('gender')?.hasError('required')">
-                Select gender
-              </mat-error>
-            </mat-radio-group>
-          </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date2</mat-label>
+            <input matInput formControlName="date2" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date2')?.hasError('date2') && appointmentForm.get('date2')?.touched">
+              date2
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s2">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date9</mat-label>
+            <input matInput formControlName="date9" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date9')?.hasError('date9') && appointmentForm.get('date9')?.touched">
+              date9
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s9">
+          </mat-checkbox>
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="appointmentForm.get('date')?.hasError('required')">
-              Please select date
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date3</mat-label>
+            <input matInput formControlName="date3" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date3')?.hasError('date3') && appointmentForm.get('date3')?.touched">
+              date3
             </mat-error>
           </mat-form-field>
         </div>
-        <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Time</mat-label>
-            <input matInput formControlName="time">
-            <mat-icon matSuffix>access_time</mat-icon>
-            <mat-error *ngIf="appointmentForm.get('time')?.hasError('required')">
-              Please select time
+        <div class="col-sm">
+          <mat-checkbox formControlName="s3">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date10</mat-label>
+            <input matInput formControlName="date10" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date10')?.hasError('date10') && appointmentForm.get('date10')?.touched">
+              date10
             </mat-error>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Mobile</mat-label>
-            <input matInput formControlName="mobile" type="number">
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-error *ngIf="appointmentForm.get('mobile')?.hasError('required')">
-              Mobile is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width " appearance="outline">
-            <mat-label>Doctor Name</mat-label>
-            <mat-select formControlName="doctor" required>
-              <mat-option [value]="'Dr.Rajesh'">
-                Dr.Rajesh
-              </mat-option>
-              <mat-option [value]="'Dr.Sarah Smith'">
-                Dr.Sarah Smith
-              </mat-option>
-              <mat-option [value]="'Dr.Jay Soni'">
-                Dr.Jay Soni
-              </mat-option>
-              <mat-option [value]="'Dr.Pooja Patel'">
-                Dr.Pooja Patel
-              </mat-option>
-              <mat-option [value]="'other'">
-                Other
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="appointmentForm.get('doctor')?.hasError('required')">
-              Doctor Name is required
-            </mat-error>
-          </mat-form-field>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s10">
+          </mat-checkbox>
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Injury/Condition</mat-label>
-            <textarea matInput formControlName="injury"></textarea>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date4</mat-label>
+            <input matInput formControlName="date4" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date4')?.hasError('date4') && appointmentForm.get('date4')?.touched">
+              date4
+            </mat-error>
           </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s4">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date11</mat-label>
+            <input matInput formControlName="date11" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date11')?.hasError('date11') && appointmentForm.get('date11')?.touched">
+              date11
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s11">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date5</mat-label>
+            <input matInput formControlName="date5" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date15')?.hasError('date5') && appointmentForm.get('date5')?.touched">
+              date5
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s5">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date12</mat-label>
+            <input matInput formControlName="date12" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date12')?.hasError('date12') && appointmentForm.get('date12')?.touched">
+              date12
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s12">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date6</mat-label>
+            <input matInput formControlName="date6" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date6')?.hasError('date6') && appointmentForm.get('date6')?.touched">
+              date6
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s6">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date13</mat-label>
+            <input matInput formControlName="date13" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date13')?.hasError('date13') && appointmentForm.get('date13')?.touched">
+              date13
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s13">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date17</mat-label>
+            <input matInput formControlName="date7" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date7')?.hasError('date7') && appointmentForm.get('date7')?.touched">
+              date7
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s7">
+          </mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>date14</mat-label>
+            <input matInput formControlName="date14" required>
+            <mat-icon matSuffix>date_range</mat-icon>
+            <mat-error *ngIf="appointmentForm.get('date14')?.hasError('date14') && appointmentForm.get('date14')?.touched">
+              date14
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox formControlName="s14">
+          </mat-checkbox>
         </div>
       </div>
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <div class="example-button-row">
-            <button mat-raised-button color="primary" [disabled]="!appointmentForm.valid" [mat-dialog-close]="1"
-              (click)="confirmAdd()">Save</button>
-            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+            <button (click)="confirmAdd()" [disabled]="!appointmentForm.valid" [mat-dialog-close]="1" color="primary"
+                    mat-raised-button>Save
+            </button>
+            <button (click)="onNoClick()" color="warn" mat-raised-button tabindex="-1">Cancel</button>
           </div>
         </div>
       </div>

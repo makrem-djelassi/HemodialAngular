@@ -29,6 +29,7 @@ import { FormDialogComponent } from './allpatients/dialog/form-dialog/form-dialo
 import { PatientService } from './allpatients/patient.service';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { SharedModule } from './../../shared/shared.module';
+import { EtattostringPipe } from './allpatients/etattostring.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SharedModule } from './../../shared/shared.module';
     PatientProfileComponent,
     DeleteComponent,
     FormDialogComponent,
+    EtattostringPipe,
   ],
   imports: [
     CommonModule,

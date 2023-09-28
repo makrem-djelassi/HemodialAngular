@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Patient } from './patient.model';
+import { Patient } from '../../../core/models/patient';
 import { DataSource } from '@angular/cdk/collections';
 import {
   MatSnackBar,
@@ -28,16 +28,15 @@ export class AllpatientsComponent
   extends UnsubscribeOnDestroyAdapter
   implements OnInit
 {
+
   displayedColumns = [
     'select',
-    'img',
-    'name',
-    'gender',
-    'address',
-    'mobile',
-    'date',
-    'bGroup',
-    'treatment',
+    'id',
+    'nom',
+    'prenom',
+    'numeroAssurePrefix',
+    'etat',
+    'type',
     'actions',
   ];
   exampleDatabase?: PatientService;
@@ -270,13 +269,12 @@ export class ExampleDataSource extends DataSource<Patient> {
           .slice()
           .filter((patient: Patient) => {
             const searchStr = (
-              patient.name +
-              patient.gender +
-              patient.address +
-              patient.date +
-              patient.bGroup +
-              patient.treatment +
-              patient.mobile
+              patient.nom +
+              patient.prenom +
+              patient.numeroAssurePrefix +
+              patient.numeroAssureSuffix +
+              patient.etat +
+              patient.type
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -302,24 +300,25 @@ export class ExampleDataSource extends DataSource<Patient> {
     return data.sort((a, b) => {
       let propertyA: number | string = '';
       let propertyB: number | string = '';
+
       switch (this._sort.active) {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
+        case 'nom':
+          [propertyA, propertyB] = [a.nom, b.nom];
           break;
-        case 'gender':
-          [propertyA, propertyB] = [a.gender, b.gender];
+        case 'prenom':
+          [propertyA, propertyB] = [a.prenom, b.prenom];
           break;
-        case 'date':
-          [propertyA, propertyB] = [a.date, b.date];
+        case 'numeroAssurePrefix':
+          [propertyA, propertyB] = [a.numeroAssurePrefix, b.numeroAssurePrefix];
           break;
-        case 'address':
-          [propertyA, propertyB] = [a.address, b.address];
+        case 'etat':
+          [propertyA, propertyB] = [a.etat, b.etat];
           break;
-        case 'mobile':
-          [propertyA, propertyB] = [a.mobile, b.mobile];
+        case 'type':
+          [propertyA, propertyB] = [a.type, b.type];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

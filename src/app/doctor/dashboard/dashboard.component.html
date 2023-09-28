@@ -2,7 +2,7 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Doctor Dashboard'" [items]="[]" [active_item]="'Dashboard'"></app-breadcrumb>
+      <app-breadcrumb [title]="'Tableau de bord'" [items]="[]" [active_item]="'Tableau de bord'"></app-breadcrumb>
     </div>
     <!-- Widgets -->
     <div class="row">
@@ -45,6 +45,7 @@
       </div>
     </div>
     <!-- #END# Widgets -->
+    <!--
     <div class="row">
       <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
         <div class="card">
@@ -91,16 +92,114 @@
         </div>
       </div>
     </div>
+    -->
     <div class="row clearfix">
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <div class="card">
           <div class="header">
             <h2>
-              Todays Appointment</h2>
+              Liste malades</h2>
 
           </div>
           <div class="tableBody">
             <div class="table-responsive">
+              <table class="table table-hover ">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Id</th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>numero Assure</th>
+                  <th>Etat</th>
+                  <th>Type </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td class="table-img"><img src="assets/images/user/user2.jpg" alt=""></td>
+                  <td>2</td>
+                  <td>ABDELLI</td>
+                  <td>ABDELJELIL</td>
+                  <td>1196476</td>
+                  <td>Ignore</td>
+                  <td><div class="badge col-red">Vacancier</div></td>
+                </tr><tr>
+                  <td class="table-img"><img src="assets/images/user/user1.jpg" alt=""></td>
+                  <td>3</td>
+                  <td>ABDELLI</td>
+                  <td>SALAH</td>
+                  <td>103317</td>
+                  <td>Actif</td>
+                  <td><div class="badge col-green">Permanent</div></td>
+                </tr><tr>
+                  <td class="table-img"><img src="assets/images/user/user2.jpg" alt=""></td>
+                  <td>4</td>
+                  <td>ABIDI</td>
+                  <td>BARGA BT OTHMAN</td>
+                  <td>403262</td>
+                  <td>Actif</td>
+                  <td><div class="badge col-green">Permanent</div></td>
+                </tr><tr>
+                  <td class="table-img"><img src="assets/images/user/user1.jpg" alt=""></td>
+                  <td>5</td>
+                  <td>ABROUG</td>
+                  <td>MONSEF</td>
+                  <td>11509111</td>
+                  <td>Actif</td>
+                  <td><div class="badge col-green">Permanent</div></td>
+                </tr><tr>
+                  <td class="table-img"><img src="assets/images/user/user1.jpg" alt=""></td>
+                  <td>6</td>
+                  <td>ABROUGUI</td>
+                  <td>TALEL</td>
+                  <td>931547</td>
+                  <td>Actif</td>
+                  <td><div class="badge col-green">Permanent</div></td>
+                </tr><tr>
+                  <td class="table-img"><img src="assets/images/user/user2.jpg" alt=""></td>
+                  <td>7</td>
+                  <td>AHMED</td>
+                  <td>BELGACEM</td>
+                  <td>637815</td>
+                  <td>Ignore</td>
+                  <td><div class="badge col-red">Vacancier</div></td>
+                </tr><tr>
+                  <td class="table-img"><img src="assets/images/user/user1.jpg" alt=""></td>
+                  <td>8</td>
+                  <td>AKAICHI</td>
+                  <td>MOULDI</td>
+                  <td>536207</td>
+                  <td>Ignore</td>
+                  <td><div class="badge col-green">Permanent</div></td>
+                </tr><tr>
+                  <td class="table-img"><img src="assets/images/user/user2.jpg" alt=""></td>
+                  <td>9</td>
+                  <td>AKRMI</td>
+                  <td>BACHIR</td>
+                  <td>589699</td>
+                  <td>Ignore</td>
+                  <td><div class="badge col-green">Permanent</div></td>
+                </tr><tr>
+                  <td class="table-img"><img src="assets/images/user/user2.jpg" alt=""></td>
+                  <td>10</td>
+                  <td>Aloui</td>
+                  <td>Med Lakhdar</td>
+                  <td>254976</td>
+                  <td>Ignore</td>
+                  <td><div class="badge col-red">Vacancier</div></td>
+                </tr><tr>
+                  <td class="table-img"><img src="assets/images/user/user1.jpg" alt=""></td>
+                  <td>11</td>
+                  <td>AMEUR</td>
+                  <td>KHADHRA</td>
+                  <td>51482542</td>
+                  <td>Ignore</td>
+                  <td><div class="badge col-red">Vacancier</div></td>
+                </tr>
+                </tbody>
+              </table>
+              <!--
               <table class="table table-hover ">
                 <thead>
                   <tr>
@@ -218,10 +317,28 @@
                   </tr>
                 </tbody>
               </table>
+              -->
             </div>
           </div>
         </div>
       </div>
+      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Nombre de Patients</h2>
+          </div>
+          <div class="body">
+            <apx-chart [series]="linechartOptions.series!" [chart]="linechartOptions.chart!"
+                       [dataLabels]="linechartOptions.dataLabels!" [plotOptions]="linechartOptions.plotOptions!"
+                       [yaxis]="linechartOptions.yaxis!" [legend]="linechartOptions.legend!" [fill]="linechartOptions.fill!"
+                       [colors]="linechartOptions.colors!" [stroke]="linechartOptions.stroke!"
+                       [tooltip]="linechartOptions.tooltip!" [xaxis]="linechartOptions.xaxis!">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+
+      <!--
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <div class="card">
           <div class="header">
@@ -299,8 +416,11 @@
           </div>
         </div>
       </div>
+      -->
     </div>
+
     <div class="row">
+      <!--
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <div class="card">
           <div class="header">
@@ -340,6 +460,8 @@
           </div>
         </div>
       </div>
+      -->
+      <!--
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <div class="card">
           <div class="header">
@@ -442,6 +564,8 @@
           </div>
         </div>
       </div>
+      -->
+      <!--
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
@@ -457,6 +581,7 @@
           </div>
         </div>
       </div>
+      -->
     </div>
   </div>
 </section>

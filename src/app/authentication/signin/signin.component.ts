@@ -34,8 +34,8 @@ export class SigninComponent
 
     ngOnInit() {
         this.authForm = this.formBuilder.group({
-            email: ['admin@admin.com', Validators.required],
-            password: ['admin', Validators.required],
+            email: ['email2@rcpt.at', Validators.required],
+            password: ['password22', Validators.required],
         });
     }
 
@@ -51,7 +51,6 @@ export class SigninComponent
             this.error = 'email and Password not valid !';
             return;
         } else {
-            console.log('login')
             this.subs.sink = this.authService
                 .login(this.f['email'].value, this.f['password'].value)
                 .subscribe(
@@ -59,6 +58,7 @@ export class SigninComponent
                         next: (res) => {
                             const role = this.authService.currentUserValue.role;
                             if (role === Role.Admin) {
+                              console.log("Admin")
                                 this.router.navigate(['/admin/dashboard/main']);
                             } else if (role === Role.Doctor) {
                                 this.router.navigate(['/doctor/dashboard']);

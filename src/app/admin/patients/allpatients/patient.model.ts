@@ -1,17 +1,20 @@
+/*
 export class Patient {
-  id: number;
-  img: string;
-  name: string;
-  gender: string;
-  bGroup: string;
-  date: string;
-  address: string;
-  mobile: string;
-  treatment: string;
-  constructor(patient: any) {
+  id number;
+  create_date_time date;
+  update_date_time date;
+  civlite string;
+  code_bureau number;
+  etat string;
+  nom string;
+  numero_assure_prefix string;
+  numero_assure_suffix string;
+  prenom string;
+  type string;
+  caisse string;
+    constructor(patient: any) {
     {
       this.id = patient.id || this.getRandomID();
-      this.img = patient.avatar || 'assets/images/user/user1.jpg';
       this.name = patient.name || '';
       this.gender = patient.gender || 'male';
       this.bGroup = patient.email || '';
@@ -27,4 +30,4 @@ export class Patient {
     };
     return S4() + S4();
   }
-}
+}*/
