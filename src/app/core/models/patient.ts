@@ -19,4 +19,22 @@ export class Patient{
   clinique!: Clinique;
   caisse!: Caisse;
   priseEnCharges!: PriseEnCharge[];
+
+  constructor(patient: any) {
+    {
+      this.id = patient.id ||'';
+      this.createDateTime = patient.createDateTime ||'';
+      this.updateDateTime = patient.updateDateTime ||'';
+      this.civlite = patient.civlite ||'';
+      this.nom = patient.nom ||'';
+      this.prenom = patient.prenom ||'';
+      this.numeroAssurePrefix = patient.numeroAssurePrefix ||'';
+      this.numeroAssureSuffix = patient.numeroAssureSuffix ||'';
+      this.type = patient.type ||'';
+      this.etat = patient.etat ||'';
+      this.clinique = patient.clinique ||'';
+      this.caisse = patient.caisse ||'';
+    }
+  }
+
 }

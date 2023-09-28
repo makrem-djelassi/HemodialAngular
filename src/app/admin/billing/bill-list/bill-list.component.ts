@@ -30,15 +30,15 @@ export class BillListComponent
 {
   displayedColumns = [
     'select',
-    // "img",
-    'pName',
-    'admissionID',
-    'dName',
-    'status',
-    'date',
-    'tax',
-    'disc',
+    'id',
+    'name',
+    'type',
+    'civlite',
+    'annee',
+    'mois',
+    'NbreSeance',
     'total',
+    'date',
     'actions',
   ];
   exampleDatabase?: BillListService;
@@ -271,12 +271,12 @@ export class ExampleDataSource extends DataSource<BillList> {
           .slice()
           .filter((billList: BillList) => {
             const searchStr = (
-              billList.pName +
-              billList.admissionID +
-              billList.dName +
-              billList.status +
+              billList.name +
+              billList.id +
+              billList.type +
+              billList.NbreSeance +
               billList.date +
-              billList.tax
+              billList.total
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -306,23 +306,20 @@ export class ExampleDataSource extends DataSource<BillList> {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'pName':
-          [propertyA, propertyB] = [a.pName, b.pName];
+        case 'name':
+          [propertyA, propertyB] = [a.name, b.name];
           break;
-        case 'admissionID':
-          [propertyA, propertyB] = [a.admissionID, b.admissionID];
+        case 'type':
+          [propertyA, propertyB] = [a.type, b.type];
           break;
-        case 'dName':
-          [propertyA, propertyB] = [a.dName, b.dName];
-          break;
-        case 'status':
-          [propertyA, propertyB] = [a.status, b.status];
+        case 'NbreSeance':
+          [propertyA, propertyB] = [a.NbreSeance, b.NbreSeance];
           break;
         case 'date':
           [propertyA, propertyB] = [a.date, b.date];
           break;
-        case 'discount':
-          [propertyA, propertyB] = [a.discount, b.discount];
+        case 'total':
+          [propertyA, propertyB] = [a.total, b.total];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

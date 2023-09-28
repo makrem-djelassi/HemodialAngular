@@ -1,46 +1,53 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AppointmentService } from './appointment.service';
-import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { Appointment } from './appointment.model';
-import { DataSource } from '@angular/cdk/collections';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AppointmentService} from './appointment.service';
+import {HttpClient} from '@angular/common/http';
+import {MatDialog} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {Appointment} from './appointment.model';
+import {DataSource} from '@angular/cdk/collections';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component';
-import { DeleteDialogComponent } from './dialogs/delete/delete.component';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { SelectionModel } from '@angular/cdk/collections';
-import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import { Direction } from '@angular/cdk/bidi';
+import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {FormDialogComponent} from './dialogs/form-dialog/form-dialog.component';
+import {DeleteDialogComponent} from './dialogs/delete/delete.component';
+import {MAT_DATE_LOCALE} from '@angular/material/core';
+import {SelectionModel} from '@angular/cdk/collections';
+import {UnsubscribeOnDestroyAdapter} from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import {Direction} from '@angular/cdk/bidi';
+export const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'YYYY-MM-DD',
+  },
+  display: {
+    dateInput: 'DD-MM-YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  },
+};
 
 @Component({
   selector: 'app-viewappointment',
   templateUrl: './viewappointment.component.html',
   styleUrls: ['./viewappointment.component.sass'],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}],
 })
 export class ViewappointmentComponent
   extends UnsubscribeOnDestroyAdapter
-  implements OnInit
-{
+  implements OnInit {
   displayedColumns = [
     'select',
-    'img',
+    'id',
     'name',
-    'email',
-    'gender',
-    'date',
-    'time',
-    'mobile',
-    'doctor',
-    'injury',
+    'type',
+    'civlite',
+    'annee',
+    'mois',
     'actions',
   ];
   exampleDatabase?: AppointmentService;
@@ -48,8 +55,8 @@ export class ViewappointmentComponent
   selection = new SelectionModel<Appointment>(true, []);
   index?: number;
   id?: number;
-  appointment?: Appointment | null;
-  sortType: any = 'multi';
+  appointment?: Appointment;// | null;
+  //sortType: any = 'multi';
 
   constructor(
     public httpClient: HttpClient,
@@ -59,53 +66,21 @@ export class ViewappointmentComponent
   ) {
     super();
   }
-  @ViewChild(MatPaginator, { static: true })
+
+  @ViewChild(MatPaginator, {static: true})
   paginator!: MatPaginator;
-  @ViewChild(MatSort, { static: true })
+  @ViewChild(MatSort, {static: true})
   sort!: MatSort;
-  @ViewChild('filter', { static: true }) filter?: ElementRef;
+  @ViewChild('filter', {static: true}) filter?: ElementRef;
 
   ngOnInit() {
     this.loadData();
   }
+
   refresh() {
     this.loadData();
   }
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource?.renderedData.length;
-    return numSelected === numRows;
-  }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected()
-      ? this.selection.clear()
-      : this.dataSource?.renderedData.forEach((row) =>
-          this.selection.select(row)
-        );
-  }
-  removeSelectedRows() {
-    const totalSelect = this.selection.selected.length;
-    this.selection.selected.forEach((item) => {
-      const index = this.dataSource?.renderedData.findIndex((d) => d === item);
-      // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
-      if (index !== undefined) {
-        if (this.exampleDatabase) {
-          this.exampleDatabase.dataChange.value.splice(index, 1);
-        }
-        this.refreshTable();
-        this.selection = new SelectionModel<Appointment>(true, []);
-      }
-    });
-    this.showNotification(
-      'snackbar-danger',
-      totalSelect + ' Record Delete Successfully...!!!',
-      'bottom',
-      'center'
-    );
-  }
   addNew() {
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -138,6 +113,7 @@ export class ViewappointmentComponent
       }
     });
   }
+
   editCall(row: any) {
     this.id = row.id;
     let tempDirection: Direction;
@@ -177,6 +153,7 @@ export class ViewappointmentComponent
       }
     });
   }
+
   deleteItem(row: any) {
     this.id = row.id;
     let tempDirection: Direction;
@@ -210,9 +187,48 @@ export class ViewappointmentComponent
       }
     });
   }
+
   private refreshTable() {
     this.paginator?._changePageSize(this.paginator.pageSize);
   }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource?.renderedData.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource?.renderedData.forEach((row) =>
+        this.selection.select(row)
+      );
+  }
+
+  removeSelectedRows() {
+    const totalSelect = this.selection.selected.length;
+    this.selection.selected.forEach((item) => {
+      const index = this.dataSource?.renderedData.findIndex((d) => d === item);
+      // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
+      if (index !== undefined) {
+        if (this.exampleDatabase) {
+          this.exampleDatabase.dataChange.value.splice(index, 1);
+        }
+        this.refreshTable();
+        this.selection = new SelectionModel<Appointment>(true, []);
+      }
+    });
+    this.showNotification(
+      'snackbar-danger',
+      totalSelect + ' Record Delete Successfully...!!!',
+      'bottom',
+      'center'
+    );
+  }
+
   public loadData() {
     this.exampleDatabase = new AppointmentService(this.httpClient);
     this.dataSource = new ExampleDataSource(
@@ -242,16 +258,21 @@ export class ViewappointmentComponent
     });
   }
 }
+
 export class ExampleDataSource extends DataSource<Appointment> {
   filterChange = new BehaviorSubject('');
+
   get filter(): string {
     return this.filterChange.value;
   }
+
   set filter(filter: string) {
     this.filterChange.next(filter);
   }
+
   filteredData: Appointment[] = [];
   renderedData: Appointment[] = [];
+
   constructor(
     public exampleDatabase: AppointmentService,
     public paginator: MatPaginator,
@@ -261,6 +282,7 @@ export class ExampleDataSource extends DataSource<Appointment> {
     // Reset to the first page when the user changes the filter.
     this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
+
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Appointment[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
@@ -279,12 +301,10 @@ export class ExampleDataSource extends DataSource<Appointment> {
           .filter((appointment: Appointment) => {
             const searchStr = (
               appointment.name +
-              appointment.email +
-              appointment.gender +
-              appointment.date +
-              appointment.doctor +
-              appointment.injury +
-              appointment.mobile
+              appointment.type +
+              appointment.civlite +
+              appointment.annee +
+              appointment.mois
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -300,8 +320,11 @@ export class ExampleDataSource extends DataSource<Appointment> {
       })
     );
   }
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  disconnect() {}
+  disconnect() {
+  }
+
   /** Returns a sorted copy of the database data. */
   sortData(data: Appointment[]): Appointment[] {
     if (!this._sort.active || this._sort.direction === '') {
@@ -317,15 +340,17 @@ export class ExampleDataSource extends DataSource<Appointment> {
         case 'name':
           [propertyA, propertyB] = [a.name, b.name];
           break;
-        case 'email':
-          [propertyA, propertyB] = [a.email, b.email];
+        case 'type':
+          [propertyA, propertyB] = [a.type, b.type];
           break;
-        // case 'date': [propertyA, propertyB] = [a.date, b.date]; break;
-        case 'time':
-          [propertyA, propertyB] = [a.time, b.time];
+        case 'civlite':
+          [propertyA, propertyB] = [a.civlite, b.civlite];
           break;
-        case 'mobile':
-          [propertyA, propertyB] = [a.mobile, b.mobile];
+        case 'annee':
+          [propertyA, propertyB] = [a.annee, b.annee];
+          break;
+        case 'mois':
+          [propertyA, propertyB] = [a.mois, b.mois];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

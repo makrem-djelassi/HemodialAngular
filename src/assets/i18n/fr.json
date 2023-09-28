@@ -1,0 +1,140 @@
+{
+  "MENUITEMS": {
+    "MAIN": {
+      "TEXT": "Accueil"
+    },
+    "DASHBOARD": {
+      "TEXT": "Tableau de bord",
+      "LIST": {
+        "DASHBOARD1": "Tableau de bord 1",
+        "DASHBOARD2": "Tableau de bord 2",
+        "DOCTOR-DASHBOARD": "Tableau de bord gerant",
+        "PATIENT-DASHBOARD": "Tableau de bord"
+      }
+    },
+    "PATIENTS": {
+      "TEXT": "Patients",
+      "LIST": {
+        "ALL-PATIENT": "Tous les Patients",
+        "ADD-PATIENT": "Ajouter Patient",
+        "EDIT-PATIENT": "Modifier Patient",
+        "PROFILE": "Patient Profile"
+      }
+    },
+    "APPOINTMENTS": {
+      "TEXT": "Mémoires",
+      "LIST": {
+        "VIEW-APPOINTMENT": "List Mémoires",
+        "BOOK-APPOINTMENT": "Ajout Mémoires",
+        "EDIT-APPOINTMENT": "Edition Mémoires"
+      }
+    },
+    "DOCTORS": {
+      "TEXT": "Factures",
+      "LIST": {
+        "ALL-DOCTOR": "Tous les factures",
+        "ADD-DOCTOR": "Ajout facture",
+        "EDIT-DOCTOR": "Edition facture",
+        "PROFILE": "Détail facture"
+      }
+    },
+    "STAFF": {
+      "TEXT": "Staff",
+      "LIST": {
+        "ALL-STAFF": "All Staff",
+        "ADD-STAFF": "Add Staff",
+        "EDIT-STAFF": "Edit Staff",
+        "PROFILE": "Staff Profile"
+      }
+    },
+    "ROOMS": {
+      "TEXT": "Room Allotment",
+      "LIST": {
+        "ALLOTED-ROOMS": "Alloted Rooms",
+        "NEW-ALLOTMENT": "New Allotment",
+        "EDIT-ALLOTMENT": "Edit Allotment"
+      }
+    },
+    "BILLING": {
+      "TEXT": "Facture",
+      "LIST": {
+        "BILL-LIST": "Toutes les factures",
+        "ADD-BILL": "Ajouter facture",
+        "INVOICE": "Détail Facture"
+      }
+    },
+    "RECORDS": {
+      "TEXT": "Records",
+      "LIST": {
+        "BIRTH-RECORDS": "Birth Records",
+        "DEATH-RECORDS": "Death Records"
+      }
+    },
+    "AMBULANCE": {
+      "TEXT": "Ambulance",
+      "LIST": {
+        "AMBULANCE-CALL-LIST": "Ambulance Call List",
+        "AMBULANCE-LIST": "Ambulance List"
+      }
+    },
+    "PHARMACY": {
+      "TEXT": "Pharmacy",
+      "LIST": {
+        "MEDICINE-LIST": "Medicine List",
+        "ADD-MEDICINE": "Add Medicine"
+      }
+    },
+    "DEPARTMENTS": {
+      "TEXT": "Departments",
+      "LIST": {
+        "DEPARTMENT-LIST": "Department List",
+        "ADD-DEPARTMENT": "Add Department"
+      }
+    },
+    "INVENTORY": {
+      "TEXT": "Inventory",
+      "LIST": {
+        "ITEM-STOCK-LIST": "Item Stock List",
+        "ISSUED-ITEMS": "Issued Items"
+      }
+    },
+    "DOCTOR": {
+      "DASHBOARD": "Tableaux de bord",
+      "APPOINTMENTS": "Mémoires",
+      "DOCTORS": "Docteurs",
+      "PATIENTS": "Patients",
+      "SETTINGS": "Configuration",
+      "CHAT": "Chat"
+    },
+    "PATIENT": {
+      "TEXT": "Patient",
+      "DASHBOARD": "*Tableau de bord",
+      "APPOINTMENTS": {
+        "TEXT": "Mémoires",
+        "LIST": {
+          "BOOK-APPOINTMENT": "Ajout Mémoires",
+          "TODAY": "Aujourd'hui Appointments",
+          "UPCOMING": "Demain Appointments",
+          "PAST": "Hier Appointments"
+        }
+      },
+      "PRESCRIPTIONS": "Prescriptions",
+      "MEDICAL-RECORD": "Medical Record",
+      "BILLING": "Billing",
+      "CHAT": "Chat",
+      "SETTINGS": "Settings"
+    },
+    "APPS": {
+      "TEXT": "-- Apps"
+    },
+    "CALENDAR": {
+      "TEXT": "Calendar"
+    },
+    "TASK": {
+      "TEXT": "Task"
+    },
+    "CONTACTS": {
+      "TEXT": "Contacts"
+    }
+  }
+}

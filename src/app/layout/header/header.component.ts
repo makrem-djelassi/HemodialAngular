@@ -1,18 +1,14 @@
-import { DOCUMENT } from '@angular/common';
-import {
-  Component,
-  Inject,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  AfterViewInit,
-} from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfigService } from 'src/app/config/config.service';
-import { AuthService } from 'src/app/core/service/auth.service';
-import { RightSidebarService } from 'src/app/core/service/rightsidebar.service';
-import { LanguageService } from 'src/app/core/service/language.service';
-import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import {DOCUMENT} from '@angular/common';
+import {AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2,} from '@angular/core';
+import {Router} from '@angular/router';
+import {ConfigService} from 'src/app/config/config.service';
+import {AuthService} from 'src/app/core/service/auth.service';
+import {RightSidebarService} from 'src/app/core/service/rightsidebar.service';
+import {LanguageService} from 'src/app/core/service/language.service';
+import {UnsubscribeOnDestroyAdapter} from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import {Role} from "../../core/models/role";
+import {User} from "../../core/models/user";
+
 const document: any = window.document;
 
 @Component({
@@ -22,8 +18,7 @@ const document: any = window.document;
 })
 export class HeaderComponent
   extends UnsubscribeOnDestroyAdapter
-  implements OnInit, AfterViewInit
-{
+  implements OnInit, AfterViewInit {
   public config: any = {};
   userImg!: string;
   homePage!: string;
@@ -33,6 +28,8 @@ export class HeaderComponent
   langStoreValue!: string;
   defaultFlag!: string;
   isOpenSidebar!: boolean;
+  currentUser: User = new User();
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -45,10 +42,12 @@ export class HeaderComponent
   ) {
     super();
   }
+
   listLang = [
-    { text: 'English', flag: 'assets/images/flags/us.svg', lang: 'en' },
-    { text: 'Spanish', flag: 'assets/images/flags/spain.svg', lang: 'es' },
-    { text: 'German', flag: 'assets/images/flags/germany.svg', lang: 'de' },
+    {text: 'English', flag: 'assets/images/flags/us.svg', lang: 'en'},
+    {text: 'Spanish', flag: 'assets/images/flags/spain.svg', lang: 'es'},
+    {text: 'German', flag: 'assets/images/flags/germany.svg', lang: 'de'},
+    {text: 'French', flag: 'assets/images/flags/french.svg', lang: 'fr'},
   ];
   notifications: any[] = [
     {
@@ -101,19 +100,17 @@ export class HeaderComponent
       status: 'msg-read',
     },
   ];
+
   ngOnInit() {
     this.config = this.configService.configData;
     const userRole = this.authService.currentUserValue.role;
     this.userImg = this.authService.currentUserValue.img;
+    this.currentUser = this.authService.currentUserValue;
 
-    if (userRole === 'Admin') {
-      this.homePage = 'admin/dashboard/main';
-    } else if (userRole === 'Patient') {
+    if (userRole === Role.Patient) {
       this.homePage = 'patient/dashboard';
-    } else if (userRole === 'Doctor') {
+    } else if (userRole === Role.Doctor) {
       this.homePage = 'doctor/dashboard';
-    } else {
-      this.homePage = 'admin/dashboard/main';
     }
 
     this.langStoreValue = localStorage.getItem('lang') as string;
@@ -179,6 +176,7 @@ export class HeaderComponent
       }
     }
   }
+
   callFullscreen() {
     if (
       !document.fullscreenElement &&
@@ -207,12 +205,14 @@ export class HeaderComponent
       }
     }
   }
+
   setLanguage(text: string, lang: string, flag: string) {
     this.countryName = text;
     this.flagvalue = flag;
     this.langStoreValue = lang;
     this.languageService.setLanguage(lang);
   }
+
   mobileMenuSidebarOpen(event: any, className: string) {
     const hasClass = event.target.classList.contains(className);
     if (hasClass) {
@@ -221,6 +221,7 @@ export class HeaderComponent
       this.renderer.addClass(this.document.body, className);
     }
   }
+
   callSidemenuCollapse() {
     const hasClass = this.document.body.classList.contains('side-closed');
     if (hasClass) {
@@ -231,6 +232,7 @@ export class HeaderComponent
       this.renderer.addClass(this.document.body, 'submenu-closed');
     }
   }
+
   logout() {
     this.subs.sink = this.authService.logout().subscribe((res) => {
       if (!res.success) {

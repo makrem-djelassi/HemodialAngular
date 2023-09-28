@@ -7,7 +7,7 @@ import {
   UntypedFormGroup,
   UntypedFormBuilder,
 } from "@angular/forms";
-import { Patient } from "../../patient.model";
+import { Patient } from "../../../../../core/models/patient";
 
 @Component({
   selector: "app-form-dialog",
@@ -28,7 +28,7 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === "edit") {
-      this.dialogTitle = data.patient.name;
+      this.dialogTitle = data.patient.nom + ' ' + data.patient.prenom;
       this.patient = data.patient;
     } else {
       this.dialogTitle = "New Patient";
@@ -50,14 +50,14 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       id: [this.patient.id],
-      img: [this.patient.img],
-      name: [this.patient.name],
-      gender: [this.patient.gender],
-      date: [this.patient.date],
-      bGroup: [this.patient.bGroup],
-      mobile: [this.patient.mobile],
-      address: [this.patient.address],
-      treatment: [this.patient.treatment],
+      prenom: [this.patient.prenom],
+      nom: [this.patient.nom],
+      civlite: [this.patient.civlite],
+      createDateTime: [this.patient.createDateTime],
+      caisse: [this.patient.caisse],
+      numeroAssurePrefix: [this.patient.numeroAssurePrefix],
+      numeroAssureSuffix: [this.patient.numeroAssureSuffix],
+      type: [this.patient.type],
     });
   }
   submit() {
